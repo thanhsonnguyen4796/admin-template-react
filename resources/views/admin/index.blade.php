@@ -3,12 +3,11 @@
     <head>
         <meta charset="utf-8">
         <title>Admin Homepage</title>
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
     </head>
+    
     <body>
-        <div id="app"></div>
+        <div id="example"></div>
     </body>
-
-    <script src="https://unpkg.com/react@15/dist/react.js"></script>
-    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 </html>
