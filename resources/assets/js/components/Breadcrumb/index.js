@@ -11,7 +11,7 @@ export default class Breadcrumb extends Component {
         if (childPages) {
             for(let i = 0; i < childPages.length; i++) {
                 breadcrumb.push(
-                    <li key={childPages[i].name} className={i == childPages.length ? 'active' : ''}>
+                        <li key={childPages[i].name} className={i == childPages.length ? 'active' : ''}>
                         <a href={childPages[i].url}>{childPages[i].name}</a>
                     </li>
                 )
