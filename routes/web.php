@@ -12,5 +12,5 @@
 */
 
 Route::get('/', function () {
-    return view('admin.index');
+    return view('admin.product.upload');
 });
