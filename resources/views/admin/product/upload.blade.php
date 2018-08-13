@@ -14,6 +14,8 @@
     <link href="{{ asset('css/plugins/iCheck/custom.css') }}" rel="stylesheet">
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/default.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <link href="{{ asset('css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css') }}" rel="stylesheet">
     <link rel="icon" href="http://pixiostudio.com/images/logo/pixio-logo-icon.png"/>
 </head>
@@ -77,88 +79,10 @@
                 </ul>
             </nav>
         </div>
-        <div class="row wrapper border-bottom white-bg page-heading">
-            <div class="col-lg-10">
-                <h2>Product Management</h2>
-                <ol class="breadcrumb">
-                    <li>
-                        <a href="#">Home</a>
-                    </li>
-                    <li>
-                        <a>Products</a>
-                    </li>
-                    <li class="active">
-                        <strong>List products</strong>
-                    </li>
-                </ol>
-            </div>
-            <div class="col-lg-2">
+        <div id="upload-product-wrap">
 
-                </div>
-        </div>
-        <div class="wrapper wrapper-content animated fadeInRight">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-title">
-                            <h5>Upload Products</h5>
-                            <div class="ibox-tools">
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <i class="fa fa-wrench"></i>
-                                </a>
-                                <a class="close-link">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ibox-content">
-                            <form method="get" action="/" class="form-horizontal">
-                                <div class="form-group"><label class="col-sm-2 control-label">Name</label>
-                                    <div class="col-sm-10"><input type="text" class="form-control"></div>
-                                </div>
-                                <div class="hr-line-dashed"></div>
-                                <div class="form-group"><label class="col-sm-2 control-label">Description</label>
-                                    <div class="col-sm-10"><textarea type="text" placeholder="Enter your product description here" class="form-control" style="resize: none"></textarea><small class="help-block m-b-none">Maximum lengths is 300 characters.</small></div>
-                                </div>
-                                <div class="hr-line-dashed"></div>
-                                <div class="form-group"><label class="col-lg-2 control-label">Handle</label>
-                                    <div class="col-lg-10"><input type="text" disabled="" placeholder="handle..." class="form-control"></div>
-                                </div>
-                                <div class="hr-line-dashed"></div>
-                                <div class="form-group"><label class="col-sm-2 control-label">Price</label>
-                                    <div class="col-sm-10"><div class="input-group m-b"><span class="input-group-addon">$</span> <input type="text" class="form-control"> <span class="input-group-addon">.00</span></div></div>
-                                </div>
-                                <div class="hr-line-dashed"></div>
-                                <div class="form-group"><label class="col-sm-2 control-label">Select</label>
-                                    <div class="col-sm-10">
-                                        <select class="form-control m-b" name="account">
-                                            <option>option 1</option>
-                                            <option>option 2</option>
-                                            <option>option 3</option>
-                                            <option>option 4</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="hr-line-dashed"></div>
-                                <div class="form-group">
-                                    <div class="col-sm-4 col-sm-offset-2">
-                                        <button class="btn btn-white" type="submit">Cancel</button>
-                                        <button class="btn btn-primary" type="submit">Save changes</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="footer">
-            <div class="pull-right">
-                10GB of <strong>250GB</strong> Free.
-            </div>
             <div>
                 <strong>Copyright</strong> Pixio Company &copy; 2014-2018
             </div>
@@ -177,6 +101,7 @@
     <script src="{{ asset('js/inspinia.js') }}"></script>
     <script src="{{ asset('js/plugins/pace/pace.min.js') }}"></script>
 
+    <script src="{{ asset('js/product/upload.js') }}"></script>
     <!-- iCheck -->
     <script src="{{ asset('js/plugins/iCheck/icheck.min.js') }}"></script>
         <script>

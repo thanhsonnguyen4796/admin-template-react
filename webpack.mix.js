@@ -12,5 +12,7 @@ let mix = require('laravel-mix');
  */
 
 mix.react('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css')
-   .browserSync('http://admin.com');
+    .sass('resources/assets/sass/app.scss', 'public/css')
+    .browserSync('http://admin.com');
+
+mix.react('resources/assets/js/product/upload.js', 'public/js/product/upload.js')
