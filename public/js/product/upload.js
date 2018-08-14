@@ -20108,6 +20108,13 @@ var UploadProductForm = function (_Component) {
     }
 
     _createClass(UploadProductForm, [{
+        key: 'handleSubmit',
+        value: function handleSubmit(event) {
+            event.preventDefault();
+            var data = new FormData(event.target);
+            console.log(data.get('name'));
+        }
+    }, {
         key: 'render',
         value: function render() {
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -20115,7 +20122,7 @@ var UploadProductForm = function (_Component) {
                 { className: 'uploadProductForm' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'form',
-                    { method: 'get', action: '/', className: 'form-horizontal' },
+                    { onSubmit: this.handleSubmit, className: 'form-horizontal' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
                         { className: 'form-group' },
@@ -20127,7 +20134,7 @@ var UploadProductForm = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
                             { className: 'col-sm-10' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control' })
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control', name: 'name' })
                         )
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'hr-line-dashed' }),
@@ -20142,7 +20149,7 @@ var UploadProductForm = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
                             { className: 'col-sm-10' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { type: 'text', placeholder: 'Enter your product description here', className: 'form-control' }),
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { name: 'description', type: 'text', placeholder: 'Enter your product description here', className: 'form-control' }),
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'small',
                                 { className: 'help-block m-b-none' },
@@ -20162,7 +20169,7 @@ var UploadProductForm = function (_Component) {
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
                             { className: 'col-lg-10' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', disabled: '', placeholder: 'handle...', className: 'form-control' })
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { name: 'handle', type: 'text', disabled: '', placeholder: 'handle...', className: 'form-control' })
                         )
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'hr-line-dashed' }),
@@ -20185,8 +20192,7 @@ var UploadProductForm = function (_Component) {
                                     { className: 'input-group-addon' },
                                     '$'
                                 ),
-                                ' ',
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', className: 'form-control' }),
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { name: 'price', type: 'text', className: 'form-control' }),
                                 ' ',
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'span',
@@ -20210,25 +20216,25 @@ var UploadProductForm = function (_Component) {
                             { className: 'col-sm-10' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'select',
-                                { className: 'form-control m-b', name: 'account' },
+                                { className: 'form-control m-b', name: 'product-category' },
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'option',
-                                    null,
+                                    { value: 'option 1' },
                                     'option 1'
                                 ),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'option',
-                                    null,
+                                    { value: 'option 2' },
                                     'option 2'
                                 ),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'option',
-                                    null,
+                                    { value: 'option 3' },
                                     'option 3'
                                 ),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'option',
-                                    null,
+                                    { value: 'option 4' },
                                     'option 4'
                                 )
                             )
@@ -20243,7 +20249,7 @@ var UploadProductForm = function (_Component) {
                             { className: 'col-sm-4 col-sm-offset-2' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'button',
-                                { className: 'btn btn-white', type: 'submit' },
+                                { className: 'btn btn-white', type: 'button' },
                                 'Cancel'
                             ),
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
