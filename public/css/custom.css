@@ -4,5 +4,9 @@
 
 .uploadCategoryForm .category-description {
     width: 100%;
-    height: 100px;
+    height: 50px;
+}
+
+.uploadCategoryForm .btn-primary {
+    margin-top: 15px;
 }

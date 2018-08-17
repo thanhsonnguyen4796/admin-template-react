@@ -20049,7 +20049,10 @@ var UploadCategoryForm = function (_Component) {
     function UploadCategoryForm() {
         _classCallCheck(this, UploadCategoryForm);
 
-        return _possibleConstructorReturn(this, (UploadCategoryForm.__proto__ || Object.getPrototypeOf(UploadCategoryForm)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (UploadCategoryForm.__proto__ || Object.getPrototypeOf(UploadCategoryForm)).call(this));
+
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        return _this;
     }
 
     _createClass(UploadCategoryForm, [{
@@ -20057,7 +20060,17 @@ var UploadCategoryForm = function (_Component) {
         value: function handleSubmit(event) {
             event.preventDefault();
             var data = new FormData(event.target);
-            console.log(data.get('name'));
+            fetch('/api/productcategory/upload', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': csrf_token
+                },
+                body: data
+            }).then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                console.log(data);
+            });
         }
     }, {
         key: 'render',
@@ -20082,10 +20095,10 @@ var UploadCategoryForm = function (_Component) {
                                     { className: 'form-group' },
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                         'label',
-                                        { className: 'control-label', htmlFor: 'category_name' },
+                                        { className: 'control-label', htmlFor: 'name' },
                                         'Category Name'
                                     ),
-                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', id: 'category_name', name: 'category_name', className: 'form-control' })
+                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', id: 'category_name', name: 'name', className: 'form-control' })
                                 )
                             )
                         ),
@@ -20097,16 +20110,21 @@ var UploadCategoryForm = function (_Component) {
                                 { className: 'col-sm-12' },
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'label',
-                                    { className: 'control-label', htmlFor: 'category_description' },
-                                    'Category Name'
+                                    { className: 'control-label', htmlFor: 'description' },
+                                    'Category Description'
                                 ),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('textarea', { id: 'category_description', name: 'category_description', className: 'category-description form-control', placeholder: 'Category Description' }),
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'category_description', name: 'description', className: 'category-description form-control' }),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'small',
                                     { className: 'help-block m-b-none' },
                                     'Maximum lengths is 300 characters.'
                                 )
                             )
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'button',
+                            { type: 'submit', className: 'btn btn-sm btn-primary' },
+                            'Upload'
                         )
                     )
                 )
@@ -20128,6 +20146,7 @@ var UploadCategoryForm = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Category__ = __webpack_require__(43);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -20139,21 +20158,69 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
 var CategoryTable = function (_Component) {
     _inherits(CategoryTable, _Component);
 
-    function CategoryTable() {
+    function CategoryTable(props) {
         _classCallCheck(this, CategoryTable);
 
-        return _possibleConstructorReturn(this, (CategoryTable.__proto__ || Object.getPrototypeOf(CategoryTable)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (CategoryTable.__proto__ || Object.getPrototypeOf(CategoryTable)).call(this, props));
+
+        _this.state = { categories: [] };
+        _this.renderCategories = _this.renderCategories.bind(_this);
+        return _this;
     }
 
     _createClass(CategoryTable, [{
-        key: 'handleSubmit',
-        value: function handleSubmit(event) {
-            event.preventDefault();
-            var data = new FormData(event.target);
-            console.log(data.get('name'));
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            jQuery(__WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.findDOMNode(this.refs.sampletable)).footable();
+            fetch('/api/productcategory/list').then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                _this2.setState({
+                    categories: data.categories
+                });
+            });
+        }
+    }, {
+        key: 'renderCategories',
+        value: function renderCategories() {
+            var rows = [];
+            var _iteratorNormalCompletion = true;
+            var _didIteratorError = false;
+            var _iteratorError = undefined;
+
+            try {
+                for (var _iterator = this.state.categories[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                    var category = _step.value;
+
+                    rows.push(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Category__["a" /* default */], { key: category.id, data: category }));
+                }
+            } catch (err) {
+                _didIteratorError = true;
+                _iteratorError = err;
+            } finally {
+                try {
+                    if (!_iteratorNormalCompletion && _iterator.return) {
+                        _iterator.return();
+                    }
+                } finally {
+                    if (_didIteratorError) {
+                        throw _iteratorError;
+                    }
+                }
+            }
+
+            return rows;
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevProps, prevState) {
+            jQuery(__WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.findDOMNode(this.refs.sampletable)).footable();
         }
     }, {
         key: 'render',
@@ -20172,7 +20239,7 @@ var CategoryTable = function (_Component) {
                             { className: 'ibox-content' },
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'table',
-                                { className: 'footable table table-stripped toggle-arrow-tiny', 'data-page-size': '15' },
+                                { ref: 'sampletable', className: 'footable table table-stripped toggle-arrow-tiny', 'data-page-size': '15' },
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'thead',
                                     null,
@@ -20204,43 +20271,7 @@ var CategoryTable = function (_Component) {
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'tbody',
                                     null,
-                                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                        'tr',
-                                        null,
-                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            'td',
-                                            null,
-                                            'Example product 1'
-                                        ),
-                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            'td',
-                                            null,
-                                            'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English.'
-                                        ),
-                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            'td',
-                                            null,
-                                            '1000'
-                                        ),
-                                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                            'td',
-                                            { className: 'text-right' },
-                                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                'div',
-                                                { className: 'btn-group' },
-                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                    'button',
-                                                    { className: 'btn-white btn btn-xs' },
-                                                    'View'
-                                                ),
-                                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                                                    'button',
-                                                    { className: 'btn-white btn btn-xs' },
-                                                    'Edit'
-                                                )
-                                            )
-                                        )
-                                    )
+                                    this.renderCategories()
                                 ),
                                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                     'tfoot',
@@ -20267,6 +20298,93 @@ var CategoryTable = function (_Component) {
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (CategoryTable);
+
+/***/ }),
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var Category = function (_Component) {
+    _inherits(Category, _Component);
+
+    function Category(props) {
+        _classCallCheck(this, Category);
+
+        return _possibleConstructorReturn(this, (Category.__proto__ || Object.getPrototypeOf(Category)).call(this, props));
+    }
+
+    _createClass(Category, [{
+        key: 'render',
+        value: function render() {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'tr',
+                null,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'td',
+                    null,
+                    this.props.data.name
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'td',
+                    null,
+                    this.props.data.description
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'td',
+                    null,
+                    '1000'
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'td',
+                    { className: 'text-right' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        'div',
+                        { className: 'btn-group' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'button',
+                            { className: 'btn-white btn btn-xs' },
+                            'View'
+                        ),
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            'button',
+                            { className: 'btn-white btn btn-xs' },
+                            'Edit'
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Category;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+/* harmony default export */ __webpack_exports__["a"] = (Category);
 
 /***/ })
 /******/ ]);

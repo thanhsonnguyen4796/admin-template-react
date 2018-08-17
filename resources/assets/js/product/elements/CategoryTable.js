@@ -1,11 +1,38 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Category from './Category';
 
 export default class CategoryTable extends Component {
-    handleSubmit(event) {
-        event.preventDefault();
-        const data = new FormData(event.target);
-        console.log(data.get('name'));
+    constructor(props) {
+        super(props);
+        this.state = { categories : [] };
+        this.renderCategories = this.renderCategories.bind(this);
+    }
+    componentDidMount() {
+        jQuery(ReactDOM.findDOMNode(this.refs.sampletable)).footable();
+        fetch('/api/productcategory/list')
+        .then(response => {
+            return response.json();
+        })
+        .then(
+            (data) => {
+                this.setState({
+                    categories: data.categories
+                });
+            }
+        );
+    }
+    renderCategories() {
+        let rows = [];
+        for(let category of this.state.categories) {
+            rows.push(
+                <Category key={category.id} data={category}/>
+            )
+        }
+        return rows;
+    }
+    componentDidUpdate(prevProps, prevState) {
+        jQuery(ReactDOM.findDOMNode(this.refs.sampletable)).footable();
     }
     render() {
         return (
@@ -13,7 +40,7 @@ export default class CategoryTable extends Component {
                 <div className="col-lg-12">
                     <div className="ibox">
                         <div className="ibox-content">
-                            <table className="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
+                            <table ref="sampletable" className="footable table table-stripped toggle-arrow-tiny" data-page-size="15">
                                 <thead>
                                 <tr>
                                     <th data-toggle="true">Category Name</th>
@@ -23,26 +50,7 @@ export default class CategoryTable extends Component {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>
-                                           Example product 1
-                                        </td>
-                                        <td>
-                                            It is a long established fact that a reader will be distracted by the readable
-                                            content of a page when looking at its layout. The point of using Lorem Ipsum is
-                                            that it has a more-or-less normal distribution of letters, as opposed to using
-                                            'Content here, content here', making it look like readable English.
-                                        </td>
-                                        <td>
-                                            1000
-                                        </td>
-                                        <td className="text-right">
-                                            <div className="btn-group">
-                                                <button className="btn-white btn btn-xs">View</button>
-                                                <button className="btn-white btn btn-xs">Edit</button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    {this.renderCategories()}
                                 </tbody>
                                 <tfoot>
                                 <tr>

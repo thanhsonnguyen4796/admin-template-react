@@ -16,5 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/product/new-product', 'Admin\ProductController@newProduct');
-
 Route::get('/product/category', 'Admin\ProductController@category');
+
+Route::get('/api/productcategory/list', 'Admin\ProductCategoryController@getList');
+Route::post('/api/productcategory/upload', 'Admin\ProductCategoryController@upload');
