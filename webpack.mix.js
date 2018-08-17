@@ -16,3 +16,4 @@ mix.react('resources/assets/js/app.js', 'public/js')
     .browserSync('http://admin.com');
 
 mix.react('resources/assets/js/product/upload.js', 'public/js/product/upload.js')
+mix.react('resources/assets/js/product/manage-category.js', 'public/js/product/manage-category.js')

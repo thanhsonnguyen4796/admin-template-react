@@ -60,31 +60,24 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 22);
+/******/ 	return __webpack_require__(__webpack_require__.s = 29);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 22:
+/***/ 29:
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(23);
-module.exports = __webpack_require__(24);
+module.exports = __webpack_require__(30);
 
 
 /***/ }),
 
-/***/ 23:
-/***/ (function(module, exports) {
+/***/ 30:
+/***/ (function(module, __webpack_exports__) {
 
-
-
-/***/ }),
-
-/***/ 24:
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
+"use strict";
+throw new Error("Module build failed: Error: ENOENT: no such file or directory, open 'C:\\xampp\\htdocs\\admin-template-react\\resources\\assets\\js\\product\\category.js'");
 
 /***/ })
 
