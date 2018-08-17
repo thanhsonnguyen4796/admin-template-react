@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('admin.product.category');
+    return view('admin.product.upload');
 });
+
+Route::get('/product/new-product', 'Admin\ProductController@newProduct');
+
+Route::get('/product/category', 'Admin\ProductController@category');

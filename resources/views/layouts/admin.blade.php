@@ -39,8 +39,8 @@
                     <a href="#"><i class="fa fa-shopping-cart"></i> <span class="nav-label">Products</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a href="#">List products</a></li>
-                        <li class="active"><a href="#">Upload product</a></li>
-                        <li><a href="#">Product category</a></li>
+                        <li class="active"><a href="/product/new-product">Upload product</a></li>
+                        <li><a href="/product/category">Manage Category</a></li>
                     </ul>
                 </li>
             </ul>

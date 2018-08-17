@@ -1,6 +1,6 @@
 {
-    "/js/product/upload.js": "/js/product/upload.js",
-    "/js/product/manage-category.js": "/js/product/manage-category.js",
+    "/js/product/ManageCategoryPage.js": "/js/product/ManageCategoryPage.js",
+    "/js/product/UploadProductPage.js": "/js/product/UploadProductPage.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css"
 }

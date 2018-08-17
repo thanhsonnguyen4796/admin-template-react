@@ -11,7 +11,7 @@ export default class UploadProductForm extends Component {
         return (
             <div className="uploadProductForm">
                 <form onSubmit={this.handleSubmit} className="form-horizontal">
-                    <div className="form-group"><label className="col-sm-2 control-label">Name</label>
+                    <div className="form-group"><label className="col-sm-2 control-label"></label>
                         <div className="col-sm-10"><input type="text" className="form-control" name="name"/></div>
                     </div>
                     <div className="hr-line-dashed"></div>

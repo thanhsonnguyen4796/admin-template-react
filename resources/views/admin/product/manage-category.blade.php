@@ -11,13 +11,11 @@
 @endsection
 
 @section('footer-script')
-    <script src="js/plugins/footable/footable.all.min.js"></script>
+    <script src="{{ asset('js/plugins/footable/footable.all.min.js') }}"></script>
     <script>
         $(document).ready(function() {
-
             $('.footable').footable();
-
         });
     </script>
-    <script src="{{ asset('js/product/manage-category.js') }}"></script>
+    <script src="{{ asset('js/product/ManageCategoryPage.js') }}"></script>
 @endsection

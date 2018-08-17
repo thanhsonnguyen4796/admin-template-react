@@ -9,5 +9,5 @@
 @endsection
 
 @section('footer-script')
-    <script src="{{ asset('js/product/upload.js') }}"></script>
+    <script src="{{ asset('js/product/UploadProductPage.js') }}"></script>
 @endsection

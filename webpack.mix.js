@@ -15,5 +15,5 @@ mix.react('resources/assets/js/app.js', 'public/js')
     .sass('resources/assets/sass/app.scss', 'public/css')
     .browserSync('http://admin.com');
 
-mix.react('resources/assets/js/product/upload.js', 'public/js/product/upload.js')
-mix.react('resources/assets/js/product/manage-category.js', 'public/js/product/manage-category.js')
+mix.react('resources/assets/js/product/UploadProductPage.js', 'public/js/product/UploadProductPage.js')
+mix.react('resources/assets/js/product/ManageCategoryPage.js', 'public/js/product/ManageCategoryPage.js')
